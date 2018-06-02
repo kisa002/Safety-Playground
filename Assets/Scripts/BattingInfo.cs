@@ -4,7 +4,7 @@ using UnityEngineInternal;
 namespace SafetyPlay
 {
     [Serializable]
-    public class BettingInfo
+    public class BettingGameInfo
     {
         public string name, res;
         public DateTime date;
@@ -13,7 +13,7 @@ namespace SafetyPlay
     }
 
     [Serializable]
-    public class BettingGameInfo
+    public class BettingInfo
     {
         public int bid, gid, _uid;
         public string win;

@@ -1848,7 +1848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &245623989
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3199,8 +3199,9 @@ GameObject:
   - component: {fileID: 463153903}
   - component: {fileID: 463153905}
   - component: {fileID: 463153904}
+  - component: {fileID: 463153906}
   m_Layer: 5
-  m_Name: RaisePanel
+  m_Name: BetBtnPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3224,8 +3225,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 434.05}
-  m_SizeDelta: {x: 0, y: 299.90002}
+  m_AnchoredPosition: {x: 0, y: 421.71002}
+  m_SizeDelta: {x: 0, y: 325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &463153904
 MonoBehaviour:
@@ -3260,6 +3261,26 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 463153902}
+--- !u!114 &463153906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 463153902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3530d9436f8980c418834e8d667e696b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transform: {fileID: 0}
+  result: 
+  isBet: 0
+  loseBtn: {fileID: 1095387009}
+  drawBtn: {fileID: 1465381491}
+  winBtn: {fileID: 343043841}
+  teamName: {fileID: 879009449}
+  durationText: {fileID: 1096438115}
+  isPanelOn: 0
 --- !u!1 &466906447
 GameObject:
   m_ObjectHideFlags: 0
@@ -4208,7 +4229,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uBC30\uD305 \uAE08\uC561 \uC774 \uB098\uC624\uACE0 \uADF8\uB7FC \u3147\u3147"
+  m_Text: "\uBC30\uD305 \uAE08\uC561\n \uC774 \uB098\uC624\uACE0 \uADF8\uB7FC \u3147\u3147"
 --- !u!222 &660192067
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5272,7 +5293,7 @@ GameObject:
   - component: {fileID: 819976853}
   - component: {fileID: 819976852}
   m_Layer: 5
-  m_Name: LosePanel
+  m_Name: WaitingBtnPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5296,8 +5317,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -539.96}
-  m_SizeDelta: {x: 0, y: 323}
+  m_AnchoredPosition: {x: 0, y: -553.29}
+  m_SizeDelta: {x: 0, y: 325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &819976852
 MonoBehaviour:
@@ -6493,7 +6514,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1095387010}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 463153906}
+        m_MethodName: BtnClick
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1095387010
@@ -6596,7 +6628,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2018-01-01
+  m_Text: 1m 10s
 --- !u!222 &1096438116
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6614,12 +6646,12 @@ GameObject:
   - component: {fileID: 1119278026}
   - component: {fileID: 1119278027}
   m_Layer: 5
-  m_Name: BattingSection
+  m_Name: BettingSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1119278025
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6658,6 +6690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c762ee9b79ac2bf42889434a6aee1aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initY: 421.71
+  heightGap: 325
 --- !u!1 &1120473610
 GameObject:
   m_ObjectHideFlags: 0
@@ -7167,8 +7201,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1752733443}
+  m_Children: []
   m_Father: {fileID: 584036201}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7468,7 +7501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 4.0000005, y: -56.199936}
+  m_AnchoredPosition: {x: 4, y: -56.199936}
   m_SizeDelta: {x: -213.95013, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1285251716
@@ -8032,7 +8065,7 @@ GameObject:
   - component: {fileID: 1353714324}
   - component: {fileID: 1353714323}
   m_Layer: 5
-  m_Name: WinPanel
+  m_Name: WinBtnPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8056,8 +8089,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 121.380005}
-  m_SizeDelta: {x: 0, y: 324.51}
+  m_AnchoredPosition: {x: 0, y: 96.71002}
+  m_SizeDelta: {x: 0, y: 325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1353714323
 MonoBehaviour:
@@ -10084,7 +10117,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035, y: -114.93}
+  m_AnchoredPosition: {x: 0.00012207031, y: -114.92993}
   m_SizeDelta: {x: -0, y: -229.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1680736200
@@ -10541,80 +10574,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1741682261}
---- !u!1 &1752733442
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1752733443}
-  - component: {fileID: 1752733445}
-  - component: {fileID: 1752733444}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1752733443
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1752733442}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1215546014}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1752733444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1752733442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Button
---- !u!222 &1752733445
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1752733442}
 --- !u!1 &1762740682
 GameObject:
   m_ObjectHideFlags: 0
@@ -12428,7 +12387,7 @@ GameObject:
   - component: {fileID: 2066565839}
   - component: {fileID: 2066565838}
   m_Layer: 5
-  m_Name: DrawPanel
+  m_Name: LoseBtnPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12452,8 +12411,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -209.9}
-  m_SizeDelta: {x: 0, y: 336.2}
+  m_AnchoredPosition: {x: 0, y: -228.28998}
+  m_SizeDelta: {x: 0, y: 325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2066565838
 MonoBehaviour:

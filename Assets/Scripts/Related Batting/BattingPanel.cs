@@ -3,69 +3,85 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattingPanel : Singleton<BattingPanel>
+public class BettingPanel : Singleton<BettingPanel>
 {
     [SerializeField]
     private Text priceField;
     [SerializeField]
-    private Button battingBtn;
-    private Text battingBtnText;
-    private Color originBattingBtnTextColor;
+    private Button bettingBtn;
+    private Text bettingBtnText;
+    private Color originbettingBtnTextColor;
 
     [SerializeField]
     private Button canelBtn;
 
     private CanvasGroup canvasGroup;
-   
-    private TeamInfo curTeamInfo;
 
-    private BatManager batManager;
-    private PlayerManager playerManager;
+    private BetManager betManager;
+    private Player player;
+
+    private new GameObject gameObject;
+
+    private string curType;
+    private BetBtnPanel curPanel;
+
+    private float remainTime;
+    private float multiple;
 
     private void Awake()
     {
-        batManager = BatManager.Instance;
-        playerManager = PlayerManager.Instance;
-        battingBtnText = battingBtn.transform.GetChild(0).GetComponent<Text>();
-        originBattingBtnTextColor = battingBtnText.color;
+        gameObject = base.gameObject;
+        betManager = BetManager.Instance;
+        player = Player.Instance;
+        bettingBtnText = bettingBtn.transform.GetChild(0).GetComponent<Text>();
+        originbettingBtnTextColor = bettingBtnText.color;
 
         canvasGroup = GameObject.Find("CanvasGroup").GetComponent<CanvasGroup>();
     }
 
-    public void Operate(TeamInfo teamInfo)
+    public void Operate(string type, BetBtnPanel curPanel, float remainTime, float multiple)
     {
+        this.remainTime = remainTime;
+        this.multiple = multiple;
+        curType = type;
         canvasGroup.blocksRaycasts = false;
         gameObject.SetActive(true);
-        curTeamInfo = teamInfo;
     }
 
     public void Cancel()
     {
         canvasGroup.blocksRaycasts = true;
         gameObject.SetActive(false);
+        curPanel.isPanelOn = false;
     }
 
-    public void CheckToCanBat()
+    public void CheckToCanBet()
     {
-        int battingPrice = int.Parse(priceField.text);
-        if (battingPrice > playerManager.curPlayer.money)
+        int bettingPrice = int.Parse(priceField.text);
+        if (bettingPrice > player.money)
         {
-            battingBtnText.color = new Color(199, 199, 204);
-            battingBtn.interactable = false;
+            bettingBtnText.color = new Color(199, 199, 204);
+            bettingBtn.interactable = false;
         }
         else
         {
-            battingBtnText.color = new Color(0, 122, 255);
-            battingBtn.interactable = true;
+            bettingBtnText.color = new Color(0, 122, 255);
+            bettingBtn.interactable = true;
         }
     }
 
-    public void Bat()
+    public void Bet()
     {
-        int battingPrice = int.Parse(priceField.text);
-        playerManager.curPlayer.money -= battingPrice;
+         curPanel.isBet = true;
+        float gettedMoney = 0;
+        int bettingPrice = int.Parse(priceField.text.Trim());
 
-        batManager.MakeBatInfo(curTeamInfo, battingPrice);
+        if (curPanel.result == curType)
+        {
+            gettedMoney = bettingPrice * multiple;
+        }
+
+        BettingSection.Instance.CreateResult(int.Parse(priceField.text.Trim()), (int)gettedMoney, (int)remainTime);
     }
 	
 }
