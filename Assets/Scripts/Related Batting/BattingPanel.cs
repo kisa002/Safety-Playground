@@ -16,7 +16,7 @@ public class BattingPanel : Singleton<BattingPanel>
     private Button canelBtn;
 
     private CanvasGroup canvasGroup;
-   
+
     private TeamInfo curTeamInfo;
 
     private BatManager batManager;

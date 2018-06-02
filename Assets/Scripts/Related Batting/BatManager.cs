@@ -37,7 +37,7 @@ public class BatManager : Singleton<BatManager>
         BattingInfo usingBattingInfo = battingInfoPool.Dequeue();
         usingBattingInfo.Initialize(battingPrice);
     }
-    
+
     private IEnumerator reloadBatResult()
     {
         yield return null;
