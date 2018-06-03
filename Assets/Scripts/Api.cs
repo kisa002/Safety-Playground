@@ -1,39 +1,43 @@
 ﻿
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.WSA.Persistence;
 using SafetyPlay;
 using UnityEditor;
 using UnityEngine.Networking;
 using UnityRest;
+using System.Collections;
 
-class Api
+public class Api
 {
-    public Api api = new Api();
 
-    private string url = "http://safetyplay.dothome.co.kr";
-    
-    private Api() {}
+    private static string url = "http://safetyplay.dothome.co.kr";
+
+
 
     // GET
-    public BettingGameInfo[] getBettingGames()
+    public IEnumerator getBettingGames()
     {
-        WWW www = new WWW(url);
+        WWW www = new WWW(url + "/games");
+        yield return www;
+
         BettingGameInfo[] bettingGameInfoes = JsonHelper.FromJson<BettingGameInfo>(www.text);
-        return bettingGameInfoes;
+        
+
     }
-    
-    public BettingGameInfo getBettingGame()
+
+
+    public BettingGameInfo getBettingGame(int gid)
     {
-        WWW www = new WWW(url);
+        WWW www = new WWW(url + "/game?gid="+gid);
         BettingGameInfo bettingGameInfo = JsonUtility.FromJson<BettingGameInfo>(www.text);
         return bettingGameInfo;
     }
 
+
     public UserInfo getUser(string name)
     {
-        WWW www = new WWW(url);
+        WWW www = new WWW(url+"/user?name="+name);
         UserInfo userInfo = JsonUtility.FromJson<UserInfo>(www.text);
         return userInfo;
     }
@@ -45,9 +49,9 @@ class Api
     
     // POST
 
-    public bool getResult(WWWForm form)
+    public static bool getResult(string path, WWWForm form)
     {
-        using (var www = UnityWebRequest.Post(url + "", form))
+        using (var www = UnityWebRequest.Post(url + path, form))
         {
             www.Send();
 
@@ -71,27 +75,30 @@ class Api
 
         return false;
     }
-    
-    public bool addMoney(string name, int amount)
+
+
+    public static bool addMoney(string name, int amount)
     {
         WWWForm form = new WWWForm();
         form.AddField("name", name);
         form.AddField("amount", amount);
 
-        return getResult(form);
+        return getResult("/add/money", form);
     }
-    
-    public bool reduceMoney(string name, int amount)
+
+
+    public static bool reduceMoney(string name, int amount)
     {
         WWWForm form = new WWWForm();
         form.AddField("name", name);
         form.AddField("amount", amount);
 
-        return getResult(form);
+        return getResult("/reduce/money", form);
     }
-    
+
+
     // LOSE, DRAW, WIN
-    public bool createBetting(int uid, int gid, int price, string win)
+    public static bool createBetting(int uid, int gid, int price, string win)
     {
         WWWForm form = new WWWForm();
         form.AddField("uid", uid);
@@ -99,24 +106,24 @@ class Api
         form.AddField("price", price);
         form.AddField("win", win);
 
-        return getResult(form);
+        return getResult("/create/bet", form);
     }
 
-    /// <summary>
-    /// This method will call "Create Method"
-    /// </summary>
-    public bool createBettingGame(string name, float win, float draw, float lose, string date, string ret)
+    public static bool createBettingGame(string name, float win, float draw, float lose, string date, string ret)
     {
         WWWForm form = new WWWForm();
 
-        return getResult(form);
+        return getResult("/create/game", form);
     }
 
-    public bool createUser(string name, string amount)
+    public static bool createUser(string name, string amount)
     {
         WWWForm form = new WWWForm();
         form.AddField("name", name);
         form.AddField("amount", amount);
-        return getResult(form);
+        return getResult("/create/user", form);
     }
+
+
+
 }

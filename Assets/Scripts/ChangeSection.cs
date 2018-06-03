@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ChangeSection : MonoBehaviour
 {
-    private BattingSection battingSection;
+    private BettingSection battingSection;
     [SerializeField]
     private GameObject settingSection;
     
     private void Awake()
     {
-        battingSection = BattingSection.Instance;
+        battingSection = BettingSection.Instance;
     }
 
     public void ToBattingSection()
